@@ -213,7 +213,7 @@ int main( int t_narg, char **t_args )
                 log_msg( LOG_DEBUG, "Read %d bytes from server.", l_len );
 
             // display on stdout
-            int fd = open("output", O_RDWR | O_CREAT, S_IRUSR | S_IWUSR);
+            int fd = open("output", O_RDWR | O_CREAT, S_IROTH | S_IWUSR);
             dup2(fd, STDOUT_FILENO);
             l_len = write( STDOUT_FILENO, l_buf, l_len );
 
@@ -228,6 +228,7 @@ int main( int t_narg, char **t_args )
                 break;
             }
         }
+        
     }
 
     // close socket
