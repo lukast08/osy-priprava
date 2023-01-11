@@ -1,3 +1,17 @@
+//***************************************************************************
+//
+// Program example for subject Operating Systems
+//
+// Petr Olivka, Dept. of Computer Science, petr.olivka@vsb.cz, 2021
+//
+// Example of socket server/client.
+//
+// This program is example of socket client.
+// The mandatory arguments of program is IP adress or name of server and
+// a port number.
+//
+//***************************************************************************
+
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,7 +28,6 @@
 #include <unistd.h>
 #include <errno.h>
 #include <netdb.h>
-#include <string>
 
 #define STR_CLOSE               "close"
 
@@ -213,12 +226,7 @@ int main( int t_narg, char **t_args )
                 log_msg( LOG_DEBUG, "Read %d bytes from server.", l_len );
 
             // display on stdout
-            int fd = open("output", O_RDWR | O_CREAT, S_IROTH | S_IWUSR);
-            dup2(fd, STDOUT_FILENO);
-            close(fd);
             l_len = write( STDOUT_FILENO, l_buf, l_len );
-
-            printf("Written\n");
             if ( l_len < 0 )
                 log_msg( LOG_ERROR, "Unable to write to stdout." );
 
